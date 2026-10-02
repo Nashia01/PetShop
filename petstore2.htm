@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <title>Pet Store App</title>
+</head>
+<body>
+    <div id="petstore">
+        <div v-if="showProduct">
+          <h1>{{message}}</h1>
+         
+
+          <button @click="navigateToCheckout" type="button" ><i class="fa-solid fa-cart-shopping"></i> Checkout <span class="cart-count">
+      ({{ cart.length }})
+    </span></button>
+          
+          
+         
+          
+          <h2 v-text="product.id"></h2>
+          <p v-text="product.title"></p>
+          <p v-text="product.description"></p>
+          <p>Price: {{product.price}}</p>
+ <button :disabled="cart.length == 5" v-on:click="addItem">Add Item</button>
+          <img  v-bind:src="product.image" alt="pet"/>
+    </div>
+
+    <div v-else>
+        <h2>Congrats on your purchase</h2>
+    </div>
+</div>
+
+    <script>
+        const {createApp} = Vue 
+        const myApp = Vue.createApp({
+          data(){
+             return{
+                message: "Welcome to my pet store",
+                product:{
+                id:1,
+                title:'Best Cat Food',
+                description:"This is the pet's favorite",
+                price:2000,
+                image:"./images/product-fullsize.png"
+
+                },  
+                cart:[],
+                newItem:0,
+                showProduct:true
+             }
+          },
+
+          methods:{
+                addItem(){
+                  
+                    this.newItem = this.newItem + 1
+                    this.cart.push(this.newItem)
+                    // this.newItem = ""
+
+                    if(cart.lenght > 5){
+                        return this.watch = true
+                    }
+                  
+                },
+
+                navigateToCheckout(){
+                    return this.showProduct = false
+                }
+            },
+
+            computed:{
+                numberOfItems(){
+                   return this.cart.lenght
+                }
+            }
+ 
+
+        })
+        myApp.mount('#petstore')
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Pet Store App</title>
+</head>
+<body>
+    <div id="petstore">
+          <h1>{{message}}</h1>
+          <h2 v-text="product.id"></h2>
+          <p v-text="product.title"></p>
+          <p v-text="product.description"></p>
+          <p>Price: {{product.price}}</p>
+          <img  v-bind:src="product.image" alt="pet"/>
+    </div>
+
+
+    <script>
+        const {createApp} = Vue 
+        const myApp = Vue.createApp({
+          data(){
+             return{
+                message: "Welcome to my pet store",
+                product:{
+                id:1,
+                title:'Best Cat Food',
+                description:"This is the pet's favorite",
+                price:2000,
+                image:"./images/pet.png"
+
+                }
+             }
+          }
+ 
+
+        })
+        myApp.mount('#petstore')
+    </script>
+
+</body>
+</html>
